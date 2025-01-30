@@ -44,16 +44,45 @@
                     <Label>Név:</Label>
                     <TextBox x:Name="nevTextbox" Width="200px" Height="15px"></TextBox>
                 </StackPanel>
-                <StackPanel x:Name="felvitelStackpanel" Orientation="Horizontal">
-                    <ItemsControl ItemsSource="{Binding felviteliLista}">
-                        <ControlTemplate>
-                            
-                        </ControlTemplate>
-                    </ItemsControl>
+
+                <StackPanel Orientation="Horizontal">
                     <Label>Azonosító:</Label>
-                    <ComboBox x:Name="azonCombobox" DisplayMemberPath="HajoAzonosito" Width="300px" Height="20px"></ComboBox>
+                    <ComboBox x:Name="azonCombobox" Width="300px" Height="20px"></ComboBox>
                 </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>Típus:</Label>
+                    <ComboBox x:Name="tipusCombobox" Width="300px" Height="20px"></ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>Szeméyek száma:</Label>
+                    <ComboBox x:Name="szemelyekSzamaCombobox" Width="300px" Height="20px"></ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>Elvitel órája:</Label>
+                    <TextBox x:Name="elvitelOrajaTextbox" Width="200px" Height="15px"></TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>Elvitel perce:</Label>
+                    <TextBox x:Name="elvitelPerceTextbox" Width="200px" Height="15px"></TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>Visszahozatal órája:</Label>
+                    <TextBox x:Name="visszahozatalOrajaTextbox" Width="200px" Height="15px"></TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>Visszahozata perce:</Label>
+                    <TextBox x:Name="visszahozatalPerceTextbox" Width="200px" Height="15px"></TextBox>
+                </StackPanel>
+                <Button x:Name="felvitelGomb" Click="felvitelGomb_Click">Felvitel</Button>
             </StackPanel>
+            <Label x:Name="asd">valami</Label>
         </StackPanel>
+        
     </Grid>
 </Window>
