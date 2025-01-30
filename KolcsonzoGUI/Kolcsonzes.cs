@@ -27,7 +27,9 @@ namespace KolcsonzoGUI
             return currentTime >= ElvitelIdoben.Add(TimeSpan.FromMinutes(5)) && currentTime <= VisszahozatalIdoben;
         }
 
-        public TimeSpan kolcsonzesIdeje => VisszahozatalIdoben - ElvitelIdoben;
+        public double kolcsonzesIdotartama() => (VisszahozatalIdoben - ElvitelIdoben).TotalMinutes;
+
+        public int hanyMegkezdettFelOra() => (int)(Math.Ceiling(kolcsonzesIdotartama() / 30));
 
         public Kolcsonzes(string sor)
         {
@@ -40,6 +42,11 @@ namespace KolcsonzoGUI
             ElvitelPerce = byte.Parse(x[5]);
             VisszahozatalOraja = byte.Parse(x[6]);
             VisszahozatalPerce = byte.Parse(x[7]);
+        }
+
+        public override string ToString()
+        {
+            return $"{this.HajoAzonosito}\t{this.kolcsonzesIdotartama()}\t{this.hanyMegkezdettFelOra()}";
         }
     }
 }

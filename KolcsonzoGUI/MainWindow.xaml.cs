@@ -17,12 +17,12 @@ namespace KolcsonzoGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Kolcsonzes> kolcsonzesek = new();
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
 
-            List<Kolcsonzes> kolcsonzesek = new();
             foreach (var item in File.ReadAllLines(@"..\..\..\src\kolcsonzes.txt").Skip(1))
             {
                 kolcsonzesek.Add(new Kolcsonzes(item));
@@ -41,6 +41,19 @@ namespace KolcsonzoGUI
             {
                 vizesHajokCombobox.ItemsSource = vizenLevoHajok;
             }
+            foreach (var item in kolcsonzesek)
+            {
+                kolcsonzesSzamitottAdataiListbox.Items.Add(item.ToString());
+            }
+
+            var felviteliLista = kolcsonzesek.Select(k => new { Azonosito = k.HajoAzonosito, Hajotipus = k.HajoTipus, SzemelyekSzama = k.SzemelyekSzama, ElvitelOraja = k.ElvitelOraja, ElvitelPerce = k.ElvitelPerce, VisszahozatalOraja = k.VisszahozatalOraja, VisszahozatalPerce = k.VisszahozatalPerce });
+
+
+        }
+
+        private void napiBevetel_Click(object sender, RoutedEventArgs e)
+        {
+            napiBevetelLabel.Content = kolcsonzesek.Sum(k => k.hanyMegkezdettFelOra()) * 1500;
         }
     }
 }
