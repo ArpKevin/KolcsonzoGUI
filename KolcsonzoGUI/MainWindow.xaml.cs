@@ -20,6 +20,7 @@ namespace KolcsonzoGUI
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
 
             List<Kolcsonzes> kolcsonzesek = new();
             foreach (var item in File.ReadAllLines(@"..\..\..\src\kolcsonzes.txt").Skip(1))
@@ -28,8 +29,18 @@ namespace KolcsonzoGUI
             }
 
             osszesRekord.ItemsSource = kolcsonzesek;
+            elvitelIdoCombobox.ItemsSource = kolcsonzesek;
 
-            asd.Content = string.Format("{0:HH:mm:ss}", DateTime.Now);
+            var vizenLevoHajok = kolcsonzesek.Where(k => k.vizenVanAHajo());
+
+            if (vizenLevoHajok.Count() == 0)
+            {
+                MessageBox.Show("Nincs jelenleg vízen lévő hajó.");
+            }
+            else
+            {
+                vizesHajokCombobox.ItemsSource = vizenLevoHajok;
+            }
         }
     }
 }

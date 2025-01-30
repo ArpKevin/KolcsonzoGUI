@@ -17,13 +17,17 @@ namespace KolcsonzoGUI
         public byte VisszahozatalOraja { get; set; }
         public byte VisszahozatalPerce { get; set; }
 
-        public TimeSpan elvitelIdoben => TimeSpan.Parse($"{this.ElvitelOraja}:{this.ElvitelPerce}");
-        public TimeSpan visszahozatalIdoben => TimeSpan.Parse($"{this.VisszahozatalOraja}:{this.VisszahozatalPerce}");
+        public TimeSpan ElvitelIdoben => TimeSpan.Parse($"{this.ElvitelOraja}:{this.ElvitelPerce}");
+        public TimeSpan VisszahozatalIdoben => TimeSpan.Parse($"{this.VisszahozatalOraja}:{this.VisszahozatalPerce}");
 
-        //public bool vizenVanAHajo()
-        //{
-        //    return 
-        //}
+        public bool vizenVanAHajo()
+        {
+            TimeSpan currentTime = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+
+            return currentTime >= ElvitelIdoben.Add(TimeSpan.FromMinutes(5)) && currentTime <= VisszahozatalIdoben;
+        }
+
+        public TimeSpan kolcsonzesIdeje => VisszahozatalIdoben - ElvitelIdoben;
 
         public Kolcsonzes(string sor)
         {

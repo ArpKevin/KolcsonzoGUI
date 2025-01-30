@@ -7,12 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <DataGrid x:Name="osszesRekord" HorizontalAlignment="Left" ScrollViewer.CanContentScroll="True" Height="450">
-                
+        <StackPanel Margin="10,0,10,0">
+            <DataGrid x:Name="osszesRekord" Height="250" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Név" Binding="{Binding Nev}" />
+                    <DataGridTextColumn Header="Hajó Azonosító" Binding="{Binding HajoAzonosito}" />
+                    <DataGridTextColumn Header="Típus" Binding="{Binding HajoTipus}" />
+                    <DataGridTextColumn Header="Személyek" Binding="{Binding SzemelyekSzama}" />
+                    <DataGridTextColumn Header="Elvitel órája" Binding="{Binding ElvitelOraja}" />
+                    <DataGridTextColumn Header="Elvitel perce" Binding="{Binding ElvitelPerce}" />
+                    <DataGridTextColumn Header="Viszahozatal órája" Binding="{Binding VisszahozatalOraja}" />
+                    <DataGridTextColumn Header="Viszahozatal perce" Binding="{Binding VisszahozatalPerce}" />
+                </DataGrid.Columns>
             </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="elvitelIdoCombobox" DisplayMemberPath="kolcsonzesIdeje" Width="300px" Height="20px" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,10,0"></ComboBox>
+                <DataGrid x:Name="vizesHajokCombobox" Height="100px" Width="450" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Név" Binding="{Binding Nev}" />
+                        <DataGridTextColumn Header="Hajó Azonosító" Binding="{Binding HajoAzonosito}" />
 
-            <Label x:Name="asd"></Label>
+                        <DataGridTextColumn Header="Elvitel órája" Binding="{Binding ElvitelOraja}" />
+                        <DataGridTextColumn Header="Elvitel perce" Binding="{Binding ElvitelPerce}" />
+                        <DataGridTextColumn Header="Viszahozatal órája" Binding="{Binding VisszahozatalOraja}" />
+                        <DataGridTextColumn Header="Viszahozatal perce" Binding="{Binding VisszahozatalPerce}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            
         </StackPanel>
     </Grid>
 </Window>
