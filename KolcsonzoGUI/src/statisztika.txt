@@ -1,4 +1,4 @@
-Azonosító: 1, kikölcsönzések száma: 6
+Azonosító: 1, kikölcsönzések száma: 8
 Azonosító: 2, kikölcsönzések száma: 6
 Azonosító: 3, kikölcsönzések száma: 5
 Azonosító: 4, kikölcsönzések száma: 5

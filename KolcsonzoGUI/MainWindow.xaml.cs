@@ -87,8 +87,8 @@ namespace KolcsonzoGUI
                 {
                     string sor = $"{nev};{azon};{tipus};{szemelyekSzama};{elvitelOraja};{elvitelPerce};{visszahozatalOraja};{visszahozatalPerce}";
 
-                    using StreamWriter swKolcsonzes = new(filePath);
-                    swKolcsonzes.WriteLine(sor);
+                    using StreamWriter swKolcsonzes = new(filePath, true);
+                    swKolcsonzes.WriteLine("\n" + sor);
 
                     Kolcsonzes felvittKolcsonzes = new(sor);
 
@@ -121,18 +121,23 @@ namespace KolcsonzoGUI
             }
             else
             {
-                var serultHajo = kolcsonzesek.FirstOrDefault(k => k.HajoAzonosito == serulHajoAzonParsed);
+                var serultHajok = kolcsonzesek.Where(k => k.HajoAzonosito == serulHajoAzonParsed);
 
-                if (serultHajo == null)
+                if (serultHajok.Count() == 0)
                 {
                     serultFeedbackLabel.Content = "A fájlbaírás sikertelen. Az állományban ez az azonosító nem szerepel.";
                 }
                 else
                 {
-                    using StreamWriter swRongalas = new($@"..\..\..\src\rongalt_hajok\rongalas_{serultHajo.HajoAzonosito}.txt");
+                    using StreamWriter swRongalas = new($@"..\..\..\src\rongalt_hajok\rongalas_{serultHajok.First().HajoAzonosito}.txt");
 
-                    swRongalas.WriteLine($"Lehetséges elkövető neve: {serultHajo.Nev}");
-                    swRongalas.WriteLine($"Ettől eddig volt nála a hajó: {serultHajo.ElvitelIdoben} - {serultHajo.VisszahozatalIdoben}");
+                    
+                    foreach (var item in serultHajok)
+                    {
+                        swRongalas.WriteLine($"Lehetséges elkövető neve: {item.Nev}");
+                        swRongalas.WriteLine($"Ettől eddig volt nála a hajó: {item.ElvitelIdoben} - {item.VisszahozatalIdoben}");
+                    }
+                    
                     serultFeedbackLabel.Content = "A fájlbaírás sikeres.";
                     serultHajoAzonTextbox.Clear();
                 }
