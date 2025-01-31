@@ -94,6 +94,12 @@
                 <Button x:Name="serultHajoAllomanybaFelvitele" Click="serultHajoAllomanybaFelvitele_Click">Sérült hajó állományba felvitele</Button>
                 <Label x:Name="serultFeedbackLabel"></Label>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="statButton" Margin="0,0,50,0" Click="statButton_Click">Statisztika készítése</Button>
+                <ComboBox x:Name="statCombobox" Visibility="Hidden"></ComboBox>
+            </StackPanel>
+            
+            
         </StackPanel>
     </Grid>
 </Window>

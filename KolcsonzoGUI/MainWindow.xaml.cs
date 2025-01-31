@@ -138,5 +138,21 @@ namespace KolcsonzoGUI
                 }
             }
         }
+
+        private void statButton_Click(object sender, RoutedEventArgs e)
+        {
+            using StreamWriter swStat = new(@"..\..\..\src\statisztika.txt");
+
+            var hajoKolcsonzesek = kolcsonzesek.GroupBy(k => k.HajoAzonosito).ToDictionary(k => k.Key, k => k.Count()).OrderBy(k => k.Key);
+
+            foreach (var item in hajoKolcsonzesek)
+            {
+                swStat.WriteLine($"Azonosító: {item.Key}, kikölcsönzések száma: {item.Value}");
+            }
+
+            statCombobox.ItemsSource = hajoKolcsonzesek;
+            statCombobox.Visibility = Visibility.Visible;
+
+        }
     }
 }
