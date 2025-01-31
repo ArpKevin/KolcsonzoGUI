@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="Auto" Width="800">
     <Grid>
-        <StackPanel Margin="10,0,10,0">
+        <StackPanel Margin="10">
             <DataGrid x:Name="osszesRekord" Height="250" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Név" Binding="{Binding Nev}" />
@@ -20,21 +20,26 @@
                     <DataGridTextColumn Header="Viszahozatal perce" Binding="{Binding VisszahozatalPerce}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="elvitelIdoCombobox" DisplayMemberPath="ElvitelIdoben" Width="300px" Height="20px" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,10,0"></ComboBox>
-                <DataGrid x:Name="vizesHajokCombobox" Height="100px" Width="450" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Név" Binding="{Binding Nev}" />
-                        <DataGridTextColumn Header="Hajó Azonosító" Binding="{Binding HajoAzonosito}" />
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <StackPanel>
+                    <ComboBox x:Name="elvitelIdoCombobox" DisplayMemberPath="ElvitelIdoben" Width="300px" Height="20px" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,10"></ComboBox>
+                    <ListBox x:Name="kolcsonzesSzamitottAdataiListbox" Width="250px" HorizontalAlignment="Center" Height="50px"></ListBox>
+                </StackPanel>
+                <StackPanel>
+                    <DataGrid x:Name="vizesHajokCombobox" Height="100px" Width="450" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Név" Binding="{Binding Nev}" />
+                            <DataGridTextColumn Header="Hajó Azonosító" Binding="{Binding HajoAzonosito}" />
 
-                        <DataGridTextColumn Header="Elvitel órája" Binding="{Binding ElvitelOraja}" />
-                        <DataGridTextColumn Header="Elvitel perce" Binding="{Binding ElvitelPerce}" />
-                        <DataGridTextColumn Header="Viszahozatal órája" Binding="{Binding VisszahozatalOraja}" />
-                        <DataGridTextColumn Header="Viszahozatal perce" Binding="{Binding VisszahozatalPerce}" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                            <DataGridTextColumn Header="Elvitel órája" Binding="{Binding ElvitelOraja}" />
+                            <DataGridTextColumn Header="Elvitel perce" Binding="{Binding ElvitelPerce}" />
+                            <DataGridTextColumn Header="Viszahozatal órája" Binding="{Binding VisszahozatalOraja}" />
+                            <DataGridTextColumn Header="Viszahozatal perce" Binding="{Binding VisszahozatalPerce}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </StackPanel>
-            <ListBox x:Name="kolcsonzesSzamitottAdataiListbox" Width="250px" HorizontalAlignment="Left" Height="100px"></ListBox>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="napiBevetel" Click="napiBevetel_Click">Napi bevétel</Button>
                 <Label x:Name="napiBevetelLabel">Itt jelenik meg az eredmény</Label>
@@ -57,7 +62,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <Label>Szeméyek száma:</Label>
-                    <ComboBox x:Name="szemelyekSzamaCombobox" Width="300px" Height="20px"></ComboBox>
+                    <ComboBox x:Name="szemelyekSzamaCombobox" Width="300px" Height="20px"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -81,8 +86,14 @@
                 </StackPanel>
                 <Button x:Name="felvitelGomb" Click="felvitelGomb_Click">Felvitel</Button>
             </StackPanel>
-            <Label x:Name="asd">valami</Label>
+            <StackPanel  HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Label>Adja meg a sérült hajó azonosítóját:</Label>
+                    <TextBox Width="200px" Height="15px" x:Name="serultHajoAzonTextbox"></TextBox>
+                </StackPanel>
+                <Button x:Name="serultHajoAllomanybaFelvitele" Click="serultHajoAllomanybaFelvitele_Click">Sérült hajó állományba felvitele</Button>
+                <Label x:Name="serultFeedbackLabel"></Label>
+            </StackPanel>
         </StackPanel>
-        
     </Grid>
 </Window>
